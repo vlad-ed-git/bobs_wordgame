@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+WordGame | Login
+{% endblock %}
+
+{% block css %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static '/wordgameweb/css/login.css' %}">
+{% endblock %}
+
+{% block pageTitle %}
+Create word lists for your students.
+{% endblock %}
+
+{% block content %}
+{% load static %}
+			<div class="row">
+				<div class="offset-1 col-xs-11 col-sm-6 col-md-6 col-lg-6">
+					<div id="aboutSite" >
+						<p>Hello and welcome to wordgame's website. 
+						This tool helps teachers create english word lists for the android app WordGame by Bob.
+						<ol>
+							<li>Sign up now (Or login to your account)</li>
+							<li>Create word lists and receive a unique identifier for your lists</li>
+							<li>Provide the unique identifier to your students so they can access your lists.</li>
+							<li>Track your students progress from your dashboard.</li>	
+						</ol>
+						To learn more about the app, feel free to contact us (scroll to bottom for contacts).
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignUpSection">
+					<h6 class="darkBlueGrey">New? Sign up now and get started.</h6>
+					<form>
+						<input type="text" name="teacher_full_name" class="input_box" placeholder="Your full name">
+						<input type="text" name="teacher_email" class="input_box" placeholder="Your email">
+						<input type="password" name="teacher_password" class="input_box" placeholder="Choose a password. *Atleast 6 characters.">
+						<input type="text" name="school_full_name" class="input_box" placeholder="Your school name">
+						<button type="submit" name="sign_up_btn" id="sign_up_btn" class="redBg white">GET STARTED</button>
+					</form>
+
+					<div id="orSection"><hr id="verticalLineLeft"><span id="theOr" class="darkBlueGrey">Or</span><hr id="verticalLineRight"></div>
+
+					<div class="smallSpace"></div>
+
+					<button name="toggle_sign_in_btn" id="toggle_sign_in_btn" class="darkBlueGreyBg white">SIGN IN</button>
+
+				</div>
+
+				<!-- sign in section ... hidden by default -->
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignInSection" style="display: none;">
+					<h6 class="darkBlueGrey">Welcome back. Login here.</h6>
+					<form>
+						<input type="text" name="teacher_email" class="input_box" placeholder="Your email">
+						<input type="password" name="teacher_password" class="input_box" placeholder="Your password">
+						<button type="submit" name="sign_in_btn" id="sign_in_btn" class="redBg white">LOGIN</button>
+					</form>
+
+					<div id="orSection"><hr id="verticalLineLeft"><span id="theOr" class="darkBlueGrey">Or</span><hr id="verticalLineRight"></div>
+
+					<div class="smallSpace"></div>
+
+					<button name="toggle_sign_up_btn" id="toggle_sign_up_btn" class="darkBlueGreyBg white">SIGN UP</button>
+
+				</div>
+
+            </div>
+{% endblock %}
+	
+
+<!-- js files-->
+{% block js %}
+{% load static %}
+    <script type="text/javascript" src=" {% static '/wordgameweb/js/login.js' %} "></script>
+{% endblock %}

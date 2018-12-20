@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}
+WordGame | Creating Lists
+{% endblock %}
+
+{% block css %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static '/wordgameweb/css/eng_words.css' %}">
+{% endblock %}
+
+{% block pageTitle %}
+Choose the words to add to your list
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+	<div class="row">
+		<div class="offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<h6 class="darkBlueGrey">Click 'DONE' when you are finished or next to see and add more words.</h6>
+			<div class="whiteBgSection" >
+				<!-- fetch 45 words max at a time -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							<!-- first 15 words -->
+							<ul class="list-group">
+								<li class="list-group-item"> 
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word1</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word2</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word3</a>
+									
+								</div>
+								</li>
+							</ul>
+						</div>
+				
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							<!-- next 15 words -->
+							<ul class="list-group">
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word4</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item"><div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word5</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item"><div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word6</a>
+									
+								</div>
+								</li>
+							</ul>
+						</div>
+			
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							<!-- last 15 words -->
+							<ul class="list-group">
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word7</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word8</a>
+									
+								</div>
+								</li>
+								<li class="list-group-item">
+								<div class="form-check form-check-inline">
+									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
+									<a href="#" class="no_style_a">word9</a>
+									
+								</div>
+								</li>
+							</ul>
+						</div>
+		
+					</div>
+			
+			</div>
+		
+		</div>
+		
+
+	</div>
+	<div class="smallSpace"></div>
+	<div class="row">
+		<div class="offset-1 col-xs-10 col-sm-3 col-md-3 col-lg-3">
+					<button type="submit" id="prevListBtn" name="prevListBtn" class="darkBlueGreyBg white">PREVIOUS</button>
+			
+		</div>
+		<div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+					<button type="submit" id="doneListBtn" name="doneListBtn" class="greenBg white">DONE</button>
+		</div>
+		<div class="col-xs-10 col-sm-3 col-md-3 col-lg-3">
+					<button type="submit" id="nextListBtn" name="nextListBtn" class="darkBlueGreyBg white">NEXT</button>
+			
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+.lightGrey{
+	color: #FAFAFA;
+}
+
+.lightGreyBg{
+	background-color: #FAFAFA;
+}
+
+.darkGrey{
+	color: #EEEEEE;
+}
+
+.darkGreyBg{
+	background-color: #EEEEEE;
+}
+
+.darkestGrey{
+	color: #E0E0E0;
+}
+
+.darkestGreyBg{
+	background-color: #E0E0E0;
+}
+
+.darkBlueGrey{
+	color: #607D8B;
+}
+
+.darkBlueGreyBg{
+	background-color: #607D8B;
+}
+
+.redBg{
+	background-color: #FF5252;
+}
+
+.greenBg{
+	background-color: green;
+}
+
+
+.red{
+	color: #FF5252;
+}
+
+.white{
+	color: #FFFFFF;
+}

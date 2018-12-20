@@ -1,0 +1,64 @@
+.whiteBgSection{
+	border-top: 25px solid  #E0E0E0;
+	border-left: 5px solid  #E0E0E0;
+	border-right: 5px solid  #E0E0E0;
+	border-bottom: 5px solid  #E0E0E0;
+	padding: 24px 12px 24px 12px;
+	background-color: #FFFFFF;
+}
+
+#createListLinkBtn{
+	display: block;
+	width: 60%;
+	height: 36px;
+	padding-top: 6px;
+	font-size: 16px;
+	border: none;
+	text-decoration: none;
+	text-align: center;
+	border-radius: 8px solid;
+
+}
+
+input{
+	display: inline-block;
+	width: 60%;
+	height: 36px;
+	padding-left: 4px;
+	color: #010101;
+}
+
+
+#editListBtn{
+	display: inline-block;
+	width: 35%;
+	height: 36px;
+	border: none;
+}
+
+#deleteListBtn{
+	display: inline-block;
+	width: 35%;
+	height: 36px;
+	border: none;
+	font-size: 16px;
+}
+
+#editListBtn:hover,
+#deleteListBtn:hover,
+#editListBtn:focus,
+#deleteListBtn:focus{
+	cursor: hand;
+	cursor: pointer;
+}
+
+.no_style_a{
+	color: #010101;
+}
+
+.no_style_a:hover,
+.no_style_a:focus,
+{
+	color: blue !important;
+	text-decoration: none;
+}

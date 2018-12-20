@@ -1,0 +1,66 @@
+#aboutSite{
+	border-top: 25px solid  #E0E0E0;
+	border-left: 5px solid  #E0E0E0;
+	border-right: 5px solid  #E0E0E0;
+	border-bottom: 5px solid  #E0E0E0;
+	padding: 32px;
+	background-color: #FFFFFF;
+}
+
+#orSection{
+	width: 90%;
+
+}
+
+#theOr{
+	display: inline-block;
+	width: 20%;
+	text-align: center;
+}
+
+#verticalLineLeft{
+	display: inline-block;
+	width: 40%;
+
+}
+
+#verticalLineRight{
+	display: inline-block;
+	width: 40%;
+	
+}
+
+
+
+.input_box{
+	display: block;
+	width: 90%;
+	height: 36px;
+	margin-bottom: 12px;
+	padding-left: 8px;
+	color: #010101;
+}
+
+#sign_up_btn,
+#sign_in_btn,
+#toggle_sign_in_btn,
+#toggle_sign_up_btn{
+	display: block;
+	width: 90%;
+	height: 36px;
+	margin-bottom: 12px;
+	padding-left: 8px;
+	
+}
+
+#sign_up_btn:hover,
+#toggle_sign_in_btn:hover,
+#sign_up_btn:focus,
+#toggle_sign_in_btn:focus,
+#sign_in_btn:focus,
+#toggle_sign_up_btn:focus,
+#sign_in_btn:focus,
+#toggle_sign_up_btn:focus{
+		cursor: pointer;
+		cursor: hand;
+}

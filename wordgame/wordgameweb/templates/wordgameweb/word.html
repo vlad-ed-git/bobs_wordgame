@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+WordGame | English Words
+{% endblock %}
+
+{% block css %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static '/wordgameweb/css/eng_words.css' %}">
+{% endblock %}
+
+{% block pageTitle %}
+Included in list No. 
+{% endblock %}
+
+{% block content %}
+{% load static %}
+	<div class="row">
+		<div class="offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<div class="whiteBgSection" >
+				<table class="table">
+					<tr>
+						<th>English word</th><td>{{ eng_word }}</td>
+					</tr>
+					<tr>
+						<th>Chinese Translation</th><td> {{ chinese_trans }}</td>
+					</tr>
+					<tr>
+						<th>Pinyin</th><td>{{ pinyin_trans }}</td>
+					</tr>
+					<tr>
+						<th>Pronunciation</th><td> {{ pronunciation }}</td>
+					</tr>
+					<tr>
+						<th>Audio</th><td> {{ audio }}</td>
+					</tr>
+				</table>
+					
+			
+			</div>
+		
+		</div>
+		
+
+	</div>
+	
+{% endblock %}

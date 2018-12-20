@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+WordGame | Teacher's Dashboard
+{% endblock %}
+
+{% block css %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static '/wordgameweb/css/home.css' %}">
+{% endblock %}
+
+{% block pageTitle %}
+Welcome back. Your id is 
+{% endblock %}
+
+{% block content %}
+{% load static %}
+			<div class="row">
+				<div class="offset-1 col-xs-11 col-sm-3 col-md-3 col-lg-3">
+					<h6 class="darkBlueGrey">Create, edit or delete your lists here.</h6>
+					<div class="whiteBgSection" >
+
+						<!-- create list button -->
+						<div class="smallSpace"></div>
+						<a href="" id="createListLinkBtn" >CREATE LIST</a>
+
+						<!-- edit list form -->
+						<div class="smallSpace"></div>
+						<form>
+							<input type="text" name="list_no" placeholder="list number e.g. 2">
+							<button type="submit" id="editListBtn" class="greenBg white">EDIT</button>
+						</form>
+
+						<!-- delete list form -->
+						<div class="smallSpace"></div>
+						<form>
+							<input type="text" name="list_no" placeholder="list number e.g. 2">
+							<button type="submit" id="deleteListBtn" class="redBg white">DELETE</button>
+						</form>
+
+					</div>
+					
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="SignUpSection">
+					<h6 class="darkBlueGrey">View your lists</h6>
+					<div class="whiteBgSection" >
+						<ul class="list-group">
+						  <li class="list-group-item"><a href="#" class="no_style_a">List 1</a></li>
+						  <li class="list-group-item"><a href="#" class="no_style_a">List 2</a></li>
+						  <li class="list-group-item"><a href="#" class="no_style_a">List 3</a></li>
+						<ul>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="SignUpSection">
+					<h6 class="darkBlueGrey">Your Students</h6>
+					<div class="whiteBgSection" >
+						<ul class="list-group">
+						  <li class="list-group-item"><a href="#" class="no_style_a">John Doe</a></li>
+						  <li class="list-group-item"><a href="#" class="no_style_a">Jane Doe</a></li>
+						  <li class="list-group-item"><a href="#" class="no_style_a">John Jane</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+{% endblock %}
