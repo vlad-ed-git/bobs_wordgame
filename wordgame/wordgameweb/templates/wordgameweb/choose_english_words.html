@@ -15,89 +15,59 @@ Choose the words to add to your list
 
 {% block content %}
 {% load static %}
-
+<form method="POST">
+{% csrf_token %}
 	<div class="row">
 		<div class="offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
-			<h6 class="darkBlueGrey">Click 'DONE' when you are finished or next to see and add more words.</h6>
+			<h6 class="darkestGrey">Give your list a number and click 'DONE' when you are done selecting.</h6>
 			<div class="whiteBgSection" >
 				<!-- fetch 45 words max at a time -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-							<!-- first 15 words -->
+								<!-- words in batch 1 -->
 							<ul class="list-group">
+								{% for word in batch1 %}
 								<li class="list-group-item"> 
 								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word1</a>
+									<label class="no_style_a"><input type="checkbox" class="form-check-input position-static" id="inlineCheckbox" value="{{ word.id }}" name="eng_words_checker">
+									{{ word.eng_word }}</label>
 									
 								</div>
 								</li>
-								<li class="list-group-item">
-								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word2</a>
-									
-								</div>
-								</li>
-								<li class="list-group-item">
-								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word3</a>
-									
-								</div>
-								</li>
+								{% endfor %}
+								
 							</ul>
 						</div>
 				
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 							<!-- next 15 words -->
 							<ul class="list-group">
-								<li class="list-group-item">
-								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word4</a>
-									
-								</div>
-								</li>
-								<li class="list-group-item"><div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word5</a>
-									
-								</div>
-								</li>
-								<li class="list-group-item"><div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word6</a>
-									
-								</div>
-								</li>
+								<!-- words in batch 2 -->
+									{% for word in batch2 %}
+									<li class="list-group-item"> 
+									<div class="form-check form-check-inline">
+									 	<label class="no_style_a"><input type="checkbox" class="form-check-input position-static" id="inlineCheckbox" value="{{ word.id }}" name="eng_words_checker">
+										{{ word.eng_word }} </label>
+										
+									</div>
+									</li>
+									{% endfor %}
 							</ul>
 						</div>
 			
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 							<!-- last 15 words -->
 							<ul class="list-group">
-								<li class="list-group-item">
+								<!-- words in batch 3 -->
+								{% for word in batch3 %}
+								<li class="list-group-item"> 
 								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word7</a>
+										<label class="no_style_a"><input type="checkbox" class="form-check-input position-static" id="inlineCheckbox" value="{{ word.id }}" name="eng_words_checker">
+									{{ word.eng_word }}</label>
 									
 								</div>
 								</li>
-								<li class="list-group-item">
-								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word8</a>
-									
-								</div>
-								</li>
-								<li class="list-group-item">
-								<div class="form-check form-check-inline">
-									<input type="checkbox" class="form-check-input position-static" id="inlineCheckbox">
-									<a href="#" class="no_style_a">word9</a>
-									
-								</div>
-								</li>
+								{% endfor %}
 							</ul>
 						</div>
 		
@@ -111,16 +81,38 @@ Choose the words to add to your list
 	</div>
 	<div class="smallSpace"></div>
 	<div class="row">
+		<div class="offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<div class="row">
+			{% for batch in batch_intervals  %}
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-1">
+			<button type="submit" name="jumpListBtn" class=" jumpListBtn darkBlueGreyBg white" value="{{ batch }}">{{ batch }}</button>
+			</div>
+			{% empty %}
+				
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="smallSpace"></div>
+
+
+	<div class="row">
 		<div class="offset-1 col-xs-10 col-sm-3 col-md-3 col-lg-3">
-					<button type="submit" id="prevListBtn" name="prevListBtn" class="darkBlueGreyBg white">PREVIOUS</button>
-			
+			{% if prev_start != 0 %}
+			<button type="submit" id="prevListBtn" name="prevListBtn" class="darkBlueGreyBg white" value="{{ prev_start }}">PREVIOUS</button>
+			{% endif %}
 		</div>
 		<div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+					<input type="text" placeholder="Enter list number e.g. 2" name="list_number_input" id="list_number_input">
 					<button type="submit" id="doneListBtn" name="doneListBtn" class="greenBg white">DONE</button>
 		</div>
 		<div class="col-xs-10 col-sm-3 col-md-3 col-lg-3">
-					<button type="submit" id="nextListBtn" name="nextListBtn" class="darkBlueGreyBg white">NEXT</button>
-			
+				{% if next_start != 0 %}
+					<button type="submit" id="nextListBtn" name="nextListBtn" class="darkBlueGreyBg white" value="{{ next_start }}">NEXT</button>
+				{% endif %}
 		</div>
 	</div>
+</form>
 {% endblock %}

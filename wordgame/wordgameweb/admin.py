@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import forms
-from .models import Teacher , Words
+from .models import Teacher , Words, TeachersList
 
 #forms for admin dashboard
 class BobTeacherChangeForm(forms.UserChangeForm):
@@ -49,3 +49,4 @@ class BobTeacherAdmin(UserAdmin):
 # Register your models here.
 admin.site.register(Teacher, BobTeacherAdmin)
 admin.site.register(Words)
+admin.site.register(TeachersList)

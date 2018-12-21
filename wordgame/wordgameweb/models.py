@@ -41,7 +41,7 @@ class Teacher(AbstractBaseUser , PermissionsMixin):
 
     #the fields 
     teacher_full_name = models.CharField( db_column = 'Full Name' , max_length=64)
-    teacher_school_name = models.CharField(db_column = 'School Name', max_length=128, null = True )
+    teacher_school_name = models.CharField(db_column = 'School Name', max_length=128, null = True , blank = True )
     teacher_email = models.EmailField(db_column = 'Email Address' , unique=True , db_index = True)
    
     is_active = models.BooleanField(default=True) 
@@ -78,7 +78,7 @@ class Teacher(AbstractBaseUser , PermissionsMixin):
 
 #english words used throughout the site
 class Words(models.Model):
-    eng_word = models.CharField(max_length = 64 , help_text = 'Word in english'  )
+    eng_word = models.CharField(max_length = 64 , help_text = 'Word in english' , unique = True )
     chinese_word = models.TextField( help_text = 'chinese translation'  )
     pinyin_word = models.TextField(help_text = 'pinyin translation'  )
     pronunciation_ipa = models.CharField(max_length = 96   )
@@ -86,3 +86,16 @@ class Words(models.Model):
     
     class Meta:
         verbose_name_plural = "Words"
+
+#the model class for teacher's lists
+class TeachersList(models.Model):
+
+    #the fields 
+    list_number = models.PositiveSmallIntegerField(db_column = "List Number" )
+    created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    words = models.ForeignKey( Words, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(default=now)
+
+    class Meta():
+        ordering = ('-date_created', )
+        unique_together = ('list_number', 'created_by' , 'words')

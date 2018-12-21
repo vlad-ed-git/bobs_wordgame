@@ -18,25 +18,98 @@ Create word lists for your students.
 			<div class="row">
 				<div class="offset-1 col-xs-11 col-sm-6 col-md-6 col-lg-6">
 					<div id="aboutSite" >
-						<p>Hello and welcome to wordgame's website. 
+						<p>Hello and welcome to wordgame's website.</p>
 						This tool helps teachers create english word lists for the android app WordGame by Bob.
 						<ol>
 							<li>Sign up now (Or login to your account)</li>
 							<li>Create word lists and receive a unique identifier for your lists</li>
 							<li>Provide the unique identifier to your students so they can access your lists.</li>
 							<li>Track your students progress from your dashboard.</li>	
-						</ol>
+                        </ol>
+                        <p>
 						To learn more about the app, feel free to contact us (scroll to bottom for contacts).
 						</p>
 					</div>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignUpSection">
+                </div>
+                <!-- hide sign up form if there are sign in errors to display -->
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignUpSection" {% if sign_in_form.non_field_errors or sign_in_form.teacher_email.errors or sign_in_form.password.errors  %} style="display: none;" {% endif %}>
 					<h6 class="darkBlueGrey">New? Sign up now and get started.</h6>
-					<form>
-						<input type="text" name="teacher_full_name" class="input_box" placeholder="Your full name">
-						<input type="text" name="teacher_email" class="input_box" placeholder="Your email">
-						<input type="password" name="teacher_password" class="input_box" placeholder="Choose a password. *Atleast 6 characters.">
-						<input type="text" name="school_full_name" class="input_box" placeholder="Your school name">
+	             	<form method="POST">
+                        {% csrf_token %}
+                          <!-- displaying non field specific erros-->
+                          {% if sign_up_form.non_field_errors %}
+                          <ol>
+                          {% for error in sign_up_form.non_field_errors %}
+                          <p  class="help-block">{{ error|escape }} </p>	
+                          {% endfor %}
+                          </ol>
+                      {% endif %}
+
+
+						<input type="text" name="{{ sign_up_form.teacher_full_name.html_name }}" class="input_box {% if sign_up_form.teacher_full_name.errors %} {{ has_errors }} {% endif %}" placeholder="Your full name"  id="{{ sign_up_form.teacher_full_name.id_for_label }}" value = "{% if sign_up_form.teacher_full_name.value  %} {{sign_up_form.teacher_full_name.value}} {%endif%}" required>
+
+						 <!-- displaying teacher_name errors  -->
+                          {% if sign_up_form.teacher_full_name.errors %}
+                              <ol>
+                              {% for error in sign_up_form.teacher_full_name.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+						<input type="text" name="{{ sign_up_form.teacher_email.html_name }}" class="input_box {% if sign_up_form.teacher_email.errors %} {{ has_errors }} {% endif %}" placeholder="Your email" id="{{ sign_up_form.teacher_email.id_for_label }}"  value = "{% if sign_up_form.teacher_email.value  %} {{sign_up_form.teacher_email.value}} {%endif%}" >
+
+						 <!-- displaying teacher_email errors  -->
+                          {% if sign_up_form.teacher_email.errors %}
+                              <ol>
+                              {% for error in sign_up_form.teacher_email.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+
+						<input type="password" name="{{ sign_up_form.password.html_name }}" class="input_box {% if sign_up_form.password.errors %} {{has_errors}} {% endif %}" id="{{ sign_up_form.password.id_for_label }}" placeholder="Choose a password. *Atleast 6 characters.">
+
+						<!-- displaying password errors  -->
+                          {% if sign_up_form.password.errors %}
+                              <ol>
+                              {% for error in sign_up_form.password.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+                          <input type="password" name="{{ sign_up_form.confirm_password.html_name }}" class="input_box {% if sign_up_form.confirm_password.errors %} {{has_errors}} {% endif %}" id="{{ sign_up_form.confirm_password.id_for_label }}" placeholder="Type the password again">
+
+						<!-- displaying confirming password errors  -->
+                          {% if sign_up_form.confirm_password.errors %}
+                              <ol>
+                              {% for error in sign_up_form.confirm_password.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+
+
+						<input type="text" name="{{ sign_up_form.teacher_school_name.html_name }}" class="input_box {% if sign_up_form.teacher_school_name.errors %} {{has_errors}} {% endif %}" placeholder="Your school name" id="{{ sign_up_form.teacher_school_name.id_for_label }}" value = "{% if sign_up_form.teacher_school_name.value  %} {{sign_up_form.teacher_school_name.value}} {%endif%}" >
+
+						<!-- displaying school name errors  -->
+                          {% if sign_up_form.teacher_school_name.errors %}
+                              <ol>
+                              {% for error in sign_up_form.teacher_school_name.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+
 						<button type="submit" name="sign_up_btn" id="sign_up_btn" class="redBg white">GET STARTED</button>
 					</form>
 
@@ -49,18 +122,51 @@ Create word lists for your students.
 				</div>
 
 				<!-- sign in section ... hidden by default -->
-				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignInSection" style="display: none;">
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="SignInSection" {% if sign_in_form.non_field_errors or sign_in_form.teacher_email.errors or sign_in_form.password.errors  %} {% else %} style="display: none;" {% endif %}>
 					<h6 class="darkBlueGrey">Welcome back. Login here.</h6>
-					<form>
-						<input type="text" name="teacher_email" class="input_box" placeholder="Your email">
-						<input type="password" name="teacher_password" class="input_box" placeholder="Your password">
+					<form method="POST">
+                        {% csrf_token %}
+                        <!-- displaying non field specific erros-->
+                        {% if sign_in_form.non_field_errors %}
+                              <ol>
+                              {% for error in sign_in_form.non_field_errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+    
+                        
+						<input type="text" name="{{ sign_in_form.teacher_email.html_name }}" class="input_box {% if sign_in_form.teacher_email.errors %} {{ has_errors }} {% endif %}" placeholder="Your email" id="{{ sign_in_form.teacher_email.id_for_label }}"  value = "{% if sign_in_form.teacher_email.value  %} {{sign_in_form.teacher_email.value}} {%endif%}" >
+
+						 <!-- displaying teacher_email errors  -->
+                          {% if sign_in_form.teacher_email.errors %}
+                              <ol>
+                              {% for error in sign_in_form.teacher_email.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
+
+						<input type="password" name="{{ sign_in_form.password.html_name }}" class="input_box {% if sign_in_form.password.errors %} {{has_errors}} {% endif %}" id="{{ sign_in_form.password.id_for_label }}" placeholder="Your password">
+
+						<!-- displaying password errors  -->
+                          {% if sign_in_form.password.errors %}
+                              <ol>
+                              {% for error in sign_in_form.password.errors %}
+                              <p  class="help-block">{{ error|escape }} </p>	
+                              {% endfor %}
+                              </ol>
+                          {% endif %}
+
 						<button type="submit" name="sign_in_btn" id="sign_in_btn" class="redBg white">LOGIN</button>
 					</form>
 
 					<div id="orSection"><hr id="verticalLineLeft"><span id="theOr" class="darkBlueGrey">Or</span><hr id="verticalLineRight"></div>
 
 					<div class="smallSpace"></div>
-
+                    
 					<button name="toggle_sign_up_btn" id="toggle_sign_up_btn" class="darkBlueGreyBg white">SIGN UP</button>
 
 				</div>

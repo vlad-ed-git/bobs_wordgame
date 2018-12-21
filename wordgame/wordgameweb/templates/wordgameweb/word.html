@@ -10,7 +10,7 @@ WordGame | English Words
 {% endblock %}
 
 {% block pageTitle %}
-Included in list No. 
+Included in list No. {{ list_number }}
 {% endblock %}
 
 {% block content %}
@@ -20,19 +20,19 @@ Included in list No.
 			<div class="whiteBgSection" >
 				<table class="table">
 					<tr>
-						<th>English word</th><td>{{ eng_word }}</td>
+						<th>English word</th><td>{{ word.eng_word }}</td>
 					</tr>
 					<tr>
-						<th>Chinese Translation</th><td> {{ chinese_trans }}</td>
+						<th>Chinese Translation</th><td> {{ word.chinese_word }}</td>
 					</tr>
 					<tr>
-						<th>Pinyin</th><td>{{ pinyin_trans }}</td>
+						<th>Pinyin</th><td>{{ word.pinyin_word }}</td>
 					</tr>
 					<tr>
-						<th>Pronunciation</th><td> {{ pronunciation }}</td>
+						<th>Pronunciation</th><td> {{ word.pronunciation_ipa }}</td>
 					</tr>
 					<tr>
-						<th>Audio</th><td> {{ audio }}</td>
+						<th>Audio</th><td> {{ word.word_audio }}</td>
 					</tr>
 				</table>
 					

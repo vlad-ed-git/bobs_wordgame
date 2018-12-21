@@ -64,3 +64,12 @@
 		cursor: pointer;
 		cursor: hand;
 }
+
+
+.help-block{
+	color: red;
+}
+
+.has-error{
+	background-color: red;
+}

@@ -10,44 +10,49 @@ WordGame | Teacher's Dashboard
 {% endblock %}
 
 {% block pageTitle %}
-Welcome back. Your id is 
+Welcome back. Your id is 11{{ request.user.id }}12
 {% endblock %}
 
 {% block content %}
 {% load static %}
 			<div class="row">
 				<div class="offset-1 col-xs-11 col-sm-3 col-md-3 col-lg-3">
-					<h6 class="darkBlueGrey">Create, edit or delete your lists here.</h6>
+					<h6 class="darkBlueGrey">Create or delete your lists.</h6>
 					<div class="whiteBgSection" >
 
 						<!-- create list button -->
 						<div class="smallSpace"></div>
-						<a href="" id="createListLinkBtn" >CREATE LIST</a>
+						<a href='/create-list/' id="createListLinkBtn" >CREATE LIST</a>
 
-						<!-- edit list form -->
-						<div class="smallSpace"></div>
-						<form>
-							<input type="text" name="list_no" placeholder="list number e.g. 2">
-							<button type="submit" id="editListBtn" class="greenBg white">EDIT</button>
-						</form>
+						
 
 						<!-- delete list form -->
 						<div class="smallSpace"></div>
-						<form>
+						<form method="POST">
+							{% csrf_token %}
 							<input type="text" name="list_no" placeholder="list number e.g. 2">
-							<button type="submit" id="deleteListBtn" class="redBg white">DELETE</button>
+							<button type="submit" id="deleteListBtn" name="deleteListBtn" class="redBg white">DELETE</button>
 						</form>
-
+						<!-- todo display error messages on delete if any or success results
+						<p id="deletingErrorMsgs" class="red" style="display:none;"></p> -->
 					</div>
 					
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="SignUpSection">
-					<h6 class="darkBlueGrey">View your lists</h6>
+					<h6 class="darkBlueGrey">View or edit your lists</h6>
 					<div class="whiteBgSection" >
 						<ul class="list-group">
-						  <li class="list-group-item"><a href="#" class="no_style_a">List 1</a></li>
-						  <li class="list-group-item"><a href="#" class="no_style_a">List 2</a></li>
-						  <li class="list-group-item"><a href="#" class="no_style_a">List 3</a></li>
+
+								{% for my_list_number in my_lists %}
+								
+								<li class="list-group-item"><a href="/edit-list/{{ my_list_number }}/" class="no_style_a">List {{ my_list_number }}</a></li>
+							
+								{% empty %}
+						
+								<li class="list-group-item"><span class="red">Your  have not created any list yet.</span></li>
+							
+								
+								{% endfor %}
 						<ul>
 					</div>
 				</div>
@@ -56,11 +61,25 @@ Welcome back. Your id is
 					<h6 class="darkBlueGrey">Your Students</h6>
 					<div class="whiteBgSection" >
 						<ul class="list-group">
-						  <li class="list-group-item"><a href="#" class="no_style_a">John Doe</a></li>
-						  <li class="list-group-item"><a href="#" class="no_style_a">Jane Doe</a></li>
-						  <li class="list-group-item"><a href="#" class="no_style_a">John Jane</a></li>
+							
+						
+						{% for student in my_students  %}
+								
+						<li class="list-group-item"><a href="#" class="no_style_a">{{ student.student_full_name }}</a></li>
+					
+						{% empty %}
+						
+						<li class="list-group-item"><span class="red">Your students have not signed up on wordgame android app yet.</span></li>
+					
+						
+						{% endfor %}
+						
 						</ul>
 					</div>
+				   
+					   
+				  
+					   
 				</div>
 
 			</div>
